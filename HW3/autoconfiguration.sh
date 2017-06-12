@@ -1,3 +1,5 @@
+#!/bin/bash
+
 PROGRAM_NAME="m"
 PROGRAM_VERSION="1.0"
 CONFG_AC=\
@@ -23,15 +25,17 @@ echo -en $MAKEFILE_AM>makefile.am
 # Creation of makefile.in and links : decomp, install, missing
 # without standart documentation files
 automake --add-missing --foreign 
-# Creation of result makefile
-./configure
+# Creation of result makefile and setting output directory as default
+cd output
+.././configure
 # Running make and build a project
 make
 # Creation of program 
 #make install
 echo " --------------- Autoconfiguration finished ---------------"
 # Cleaning directory
-rm -rf autom4te.cache compile aclocal.m4 config.log config.status configure \
-	configure.ac depcomp install-sh makefile makefile.am makefile.in missing
+cd ..
+rm -rf autom4te.cache compile aclocal.m4 output/config.log output/config.status configure \
+	configure.ac depcomp install-sh output/makefile makefile.am makefile.in missing
 
 
